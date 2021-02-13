@@ -22,15 +22,53 @@ public class MenuController : MonoBehaviour
     }
     #endregion
 
+    private UIPanel mPanel;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPlayButtonClick()
     {
-        
+        Close();
+        GameController.Instance.Open();
+    }
+
+    public void Init()
+    {
+        mPanel = GetComponent<UIPanel>();
+    }
+
+    public void Open()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine("Open_Coroutine");
+    }
+
+    IEnumerator Open_Coroutine()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            mPanel.alpha += 0.1f;
+            yield return new WaitForSeconds(0.001f);
+        }
+    }
+
+    public void Close()
+    {
+        StartCoroutine("Close_Coroutine");
+    }
+
+    IEnumerator Close_Coroutine()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            mPanel.alpha -= 0.1f;
+            yield return new WaitForSeconds(0.001f);
+        }
+        mPanel.alpha = 0;
+        gameObject.SetActive(false);
     }
 }
