@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
 
     public List<UISprite> mKnifesIconSprites;
 
+    private Vector3 mKnifeToHitStartPosition;
+
     private int mCurrentStage = 1;
     private int mKnifeLowerLimitForY = -650;
 
@@ -48,6 +50,8 @@ public class GameController : MonoBehaviour
     {
         mPanel = GetComponent<UIPanel>();
         mPanel.alpha = 0;
+
+        mKnifeToHitPrefab = Resources.Load<GameObject>("Prefabs/knifeHit");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").gameObject;
@@ -80,6 +84,12 @@ public class GameController : MonoBehaviour
         {
             mKnifesIconSprites[i].alpha = 1;
         }
+    }
+
+    public void CreateNewKnifeToHit()
+    {
+        mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
+        mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
     }
 
     public void Open()
@@ -118,7 +128,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Hit!");
         mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1));
+        mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 250);
     }
 
     private void Update()
@@ -130,6 +140,7 @@ public class GameController : MonoBehaviour
             if (Mathf.Abs(mKnifeToHit.transform.localPosition.y - mKnifeLowerLimitForY) < 1)
             {
                 mKnifeNeedMove = false;
+                mKnifeToHitStartPosition = mKnifeToHit.transform.localPosition;
             }
         }
         

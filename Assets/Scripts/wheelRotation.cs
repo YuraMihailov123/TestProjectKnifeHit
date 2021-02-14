@@ -8,17 +8,15 @@ public class wheelRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.position, new Vector3(0,0,1f), 100 * Time.deltaTime);
+        transform.RotateAround(transform.position, new Vector3(0,0,1f), 300 * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name);
+        col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         col.gameObject.transform.parent = transform;
-        Vector3 relative = col.gameObject.transform.InverseTransformPoint(transform.position);
-        col.gameObject.transform.localPosition = relative;
-        Debug.Log(col.gameObject.transform.position);
-        Debug.Log(relative);
+        GameController.Instance.CreateNewKnifeToHit();
     }
 
 }
