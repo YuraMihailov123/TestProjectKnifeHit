@@ -24,19 +24,22 @@ public class GameController : MonoBehaviour
 
     private UIPanel mPanel;
 
-    private GameObject mScoreLabel;
-    private GameObject mStageLabel;
+    private UILabel mScoreLabel;
+    private UILabel mStageLabel;
+
     private GameObject mKnifeSet;
     private GameObject mStagesProgress;
     private GameObject mKnifeToHitPrefab;
     private GameObject mKnifeToHit;
 
-    public List<UISprite> mKnifesIconSprites;
+    private List<UISprite> mKnifesIconSprites;
 
     private Vector3 mKnifeToHitStartPosition;
 
-    private int mCurrentStage = 1;
+    public int mCurrentStage = 1;
+    public int mKnifesToHitLeft = 0;
     private int mKnifeLowerLimitForY = -650;
+    private int score = 0;
 
     private bool mKnifeNeedMove = false;
 
@@ -48,16 +51,19 @@ public class GameController : MonoBehaviour
 
     public void Init()
     {
+        score = 0;
+
         mPanel = GetComponent<UIPanel>();
         mPanel.alpha = 0;
 
         mKnifeToHitPrefab = Resources.Load<GameObject>("Prefabs/knifeHit");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
-        mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").gameObject;
-        mStageLabel = transform.Find("GameControllerUI").transform.Find("stageLabel").gameObject;
+        mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
+        mStageLabel = transform.Find("GameControllerUI").transform.Find("stageLabel").GetComponent<UILabel>();
         mKnifeSet = transform.Find("GameControllerUI").transform.Find("knifeSet").gameObject;
 
+        mKnifesIconSprites = new List<UISprite>();
         for (int i = 0; i < mKnifeSet.transform.childCount; i++) {
             mKnifesIconSprites.Add(mKnifeSet.transform.GetChild(i).GetComponent<UISprite>());
             mKnifesIconSprites[i].alpha = 0;
@@ -69,27 +75,54 @@ public class GameController : MonoBehaviour
     private void StartGame()
     {
         mKnifeNeedMove = true;
-        UpdateGameControllerUI();
+        PrepareGameControllerUI();
     }
 
-    private void UpdateGameControllerUI()
+    private void PrepareGameControllerUI()
     {
         BuildKnifeIconsToHit();
     }
 
     private void BuildKnifeIconsToHit()
     {
-        mStagesProgress.transform.Find(mCurrentStage.ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0, 1);
+        mStageLabel.text = "STAGE " + mCurrentStage;
+        mScoreLabel.text = score.ToString();
+
+        mKnifesToHitLeft = Storage.Instance.mGameSettings.mStagesKnifeCount[mCurrentStage - 1];
+        mStagesProgress.transform.Find(mCurrentStage.ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0);
         for (int i = 0; i < Storage.Instance.mGameSettings.mStagesKnifeCount[mCurrentStage-1]; i++)
         {
             mKnifesIconSprites[i].alpha = 1;
         }
     }
 
+    public void ResetKnifeIconsStates()
+    {
+        for (int i = 0; i < mKnifesIconSprites.Count; i++)
+        {
+            mKnifesIconSprites[i].color = new Color(1, 1, 1,0);
+        }
+    }
+
     public void CreateNewKnifeToHit()
     {
+        mScoreLabel.text = (++score).ToString();
         mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
         mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
+        UpdateKnifeIconsStates();
+    }
+
+    private void UpdateKnifeIconsStates()
+    {
+        if (mKnifesToHitLeft <= 1)
+        {
+            mCurrentStage++;
+            ResetKnifeIconsStates();
+            BuildKnifeIconsToHit();
+            return;
+        }
+        mKnifesIconSprites[mKnifesToHitLeft - 1].color = new Color(0.5f, 0.5f, 0.5f, 1);
+        mKnifesToHitLeft--;
     }
 
     public void Open()
@@ -128,7 +161,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Hit!");
         mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 250);
+        mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 300);
     }
 
     private void Update()

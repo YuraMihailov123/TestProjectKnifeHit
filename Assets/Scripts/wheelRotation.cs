@@ -8,7 +8,7 @@ public class wheelRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.position, new Vector3(0,0,1f), 300 * Time.deltaTime);
+        transform.RotateAround(transform.position, new Vector3(0,0,1f), 100 * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D col)
