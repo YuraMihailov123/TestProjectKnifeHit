@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class wheelRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.position, new Vector3(0,0,1), 100 * Time.deltaTime);
+        transform.RotateAround(transform.position, new Vector3(0,0,1f), 100 * Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.name);
+        col.gameObject.transform.parent = transform;
+        Vector3 relative = col.gameObject.transform.InverseTransformPoint(transform.position);
+        col.gameObject.transform.localPosition = relative;
+        Debug.Log(col.gameObject.transform.position);
+        Debug.Log(relative);
     }
 
 }
