@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class wheelRotation : MonoBehaviour
 {
-
+    public List<Rigidbody2D> mWheelParts;
     // Update is called once per frame
     void Update()
     {
@@ -15,8 +15,9 @@ public class wheelRotation : MonoBehaviour
     {
         Debug.Log(col.gameObject.name);
         col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         col.gameObject.transform.parent = transform;
-        GameController.Instance.CreateNewKnifeToHit();
+        GameController.Instance.UpdateKnifeIconsStates();
     }
 
 }

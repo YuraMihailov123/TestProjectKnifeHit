@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
     }
     #endregion
 
-    private UIPanel mPanel;
+    public UIPanel mPanel;
 
     // Start is called before the first frame update
     void Start()

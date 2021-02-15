@@ -27,5 +27,57 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 0
     paddingBottom: 0
+  - name: treewheel1
+    x: 365
+    y: 15
+    width: 119
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: treewheel2
+    x: 243
+    y: 136
+    width: 121
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: treewheel3
+    x: 365
+    y: 136
+    width: 119
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: treewheel4
+    x: 243
+    y: 15
+    width: 121
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}

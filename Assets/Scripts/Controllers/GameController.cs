@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     private GameObject mStagesProgress;
     private GameObject mKnifeToHitPrefab;
     private GameObject mKnifeToHit;
+    private GameObject mwheelPrefab;
+    private GameObject mCurrentWheel;
 
     private List<UISprite> mKnifesIconSprites;
 
@@ -39,7 +41,7 @@ public class GameController : MonoBehaviour
     public int mCurrentStage = 1;
     public int mKnifesToHitLeft = 0;
     private int mKnifeLowerLimitForY = -650;
-    private int score = 0;
+    private int mScore = 0;
 
     private bool mKnifeNeedMove = false;
 
@@ -51,12 +53,13 @@ public class GameController : MonoBehaviour
 
     public void Init()
     {
-        score = 0;
+        mScore = 0;
 
         mPanel = GetComponent<UIPanel>();
         mPanel.alpha = 0;
 
         mKnifeToHitPrefab = Resources.Load<GameObject>("Prefabs/knifeHit");
+        mwheelPrefab = Resources.Load<GameObject>("Prefabs/wheelSpriteNew");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
@@ -80,13 +83,14 @@ public class GameController : MonoBehaviour
 
     private void PrepareGameControllerUI()
     {
+        
         BuildKnifeIconsToHit();
     }
 
     private void BuildKnifeIconsToHit()
     {
         mStageLabel.text = "STAGE " + mCurrentStage;
-        mScoreLabel.text = score.ToString();
+        mScoreLabel.text = mScore.ToString();
 
         mKnifesToHitLeft = Storage.Instance.mGameSettings.mStagesKnifeCount[mCurrentStage - 1];
         mStagesProgress.transform.Find(mCurrentStage.ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0);
@@ -94,6 +98,10 @@ public class GameController : MonoBehaviour
         {
             mKnifesIconSprites[i].alpha = 1;
         }
+
+        mCurrentWheel = gameObject.transform.AddChild(mwheelPrefab);
+        mCurrentWheel.transform.localPosition = new Vector3(0, 350, 0);
+        StartCoroutine("SpawnWheel_Coroutine");
     }
 
     public void ResetKnifeIconsStates()
@@ -104,25 +112,77 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void CreateNewKnifeToHit()
+    IEnumerator ResetStages_Couroutine()
     {
-        mScoreLabel.text = (++score).ToString();
-        mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
-        mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
-        UpdateKnifeIconsStates();
+        mStagesProgress.transform.Find("5s").GetComponent<UISprite>().color = new Color(1,1,1);
+        yield return new WaitForSeconds(0.2f);
+        mStagesProgress.transform.Find("4s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        mStagesProgress.transform.Find("3s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        mStagesProgress.transform.Find("2s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        mStagesProgress.transform.Find("1s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
     }
 
-    private void UpdateKnifeIconsStates()
+    public void CreateNewKnifeToHit()
+    {
+        mScoreLabel.text = (++mScore).ToString();
+        mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
+        mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
+        //UpdateKnifeIconsStates();
+    }
+
+    IEnumerator BreakWheel_Couroutine()
+    {
+        wheelRotation wheel = mCurrentWheel.GetComponent<wheelRotation>();
+        mCurrentWheel.GetComponent<CircleCollider2D>().enabled = false;
+        wheel.enabled = false;
+        for (int i = 0; i < mCurrentWheel.transform.childCount; i++)
+        {
+            var currChild = mCurrentWheel.transform.GetChild(i);
+            currChild.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            currChild.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-2.5f,2.5f), Random.Range(1f, 2f)) * 40);
+            currChild.GetComponent<Rigidbody2D>().AddTorque(10, ForceMode2D.Impulse);
+        }
+        
+        yield return new WaitForSeconds(1f);
+        Destroy(mCurrentWheel);
+        CreateNewKnifeToHit();
+        BuildKnifeIconsToHit();
+
+    }
+
+    public void UpdateKnifeIconsStates()
     {
         if (mKnifesToHitLeft <= 1)
         {
+            if(mCurrentStage == 5)
+            {
+                mCurrentStage = 0;
+                StartCoroutine("ResetStages_Couroutine");
+            }
             mCurrentStage++;
             ResetKnifeIconsStates();
-            BuildKnifeIconsToHit();
+            StartCoroutine("BreakWheel_Couroutine");
+            //BuildKnifeIconsToHit();
             return;
         }
+        CreateNewKnifeToHit();
         mKnifesIconSprites[mKnifesToHitLeft - 1].color = new Color(0.5f, 0.5f, 0.5f, 1);
         mKnifesToHitLeft--;
+    }
+
+    IEnumerator SpawnWheel_Coroutine()
+    {
+        float scale = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            scale += 0.1f;
+            mCurrentWheel.transform.localScale = new Vector3(scale,scale,scale);
+            yield return new WaitForSeconds(0.001f);
+        }
     }
 
     public void Open()
@@ -159,9 +219,12 @@ public class GameController : MonoBehaviour
 
     public void TapToHit()
     {
-        Debug.Log("Hit!");
-        mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 300);
+        if (MenuController.Instance.mPanel.alpha == 0)
+        {
+            Debug.Log("Hit!");
+            mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 300);
+        }
     }
 
     private void Update()
