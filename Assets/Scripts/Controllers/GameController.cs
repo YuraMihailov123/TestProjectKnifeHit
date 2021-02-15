@@ -112,23 +112,34 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void CleanGameField()
+    {
+        mScore = 0;
+        mCurrentStage = 1;
+        Destroy(mCurrentWheel);
+        Destroy(mKnifeToHit);
+        ResetKnifeIconsStates();
+        StartCoroutine("ResetStages_Couroutine");
+    }
+
     IEnumerator ResetStages_Couroutine()
     {
         mStagesProgress.transform.Find("5s").GetComponent<UISprite>().color = new Color(1,1,1);
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("4s").GetComponent<UISprite>().color = new Color(1, 1, 1);
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("3s").GetComponent<UISprite>().color = new Color(1, 1, 1);
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("2s").GetComponent<UISprite>().color = new Color(1, 1, 1);
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("1s").GetComponent<UISprite>().color = new Color(1, 1, 1);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.001f);
     }
 
-    public void CreateNewKnifeToHit()
+    public void CreateNewKnifeToHit(bool shouldIncreaseScore = true)
     {
-        mScoreLabel.text = (++mScore).ToString();
+        if (shouldIncreaseScore)
+            mScoreLabel.text = (++mScore).ToString();
         mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
         mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
         //UpdateKnifeIconsStates();
@@ -223,7 +234,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Hit!");
             mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 300);
+            mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 400);
         }
     }
 

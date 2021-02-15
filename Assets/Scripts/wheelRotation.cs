@@ -14,10 +14,13 @@ public class wheelRotation : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name);
-        col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        //col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        col.gameObject.transform.parent = transform;
-        GameController.Instance.UpdateKnifeIconsStates();
+        if (col.gameObject.tag == "Finish")
+        {
+            col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            //col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            col.gameObject.transform.parent = transform;
+            GameController.Instance.UpdateKnifeIconsStates();
+        }
     }
 
 }
