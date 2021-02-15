@@ -15,7 +15,7 @@ public class wheelRotation : MonoBehaviour
     {
         Debug.Log(col.gameObject.name);
         col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         col.gameObject.transform.parent = transform;
         GameController.Instance.UpdateKnifeIconsStates();
     }
