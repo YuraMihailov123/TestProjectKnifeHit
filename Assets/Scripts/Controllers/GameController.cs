@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
     private int mKnifeLowerLimitForY = -650;
     public int mScore = 0;
 
+    public bool isPlaying = false;
     private bool mKnifeNeedMove = false;
 
     // Start is called before the first frame update
@@ -199,6 +200,7 @@ public class GameController : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        isPlaying = true;
         StartCoroutine("Open_Coroutine");
     }
 
@@ -230,9 +232,8 @@ public class GameController : MonoBehaviour
 
     public void TapToHit()
     {
-        if (MenuController.Instance.mPanel.alpha == 0)
+        if (!mKnifeNeedMove && mPanel.alpha == 1 && isPlaying)
         {
-            Debug.Log("Hit!");
             mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 400);
         }

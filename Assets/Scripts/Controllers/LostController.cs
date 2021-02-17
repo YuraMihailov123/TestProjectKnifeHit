@@ -36,9 +36,12 @@ public class LostController : MonoBehaviour
 
     public void OnRestartButtonClick()
     {
-        Close();
-        GameController.Instance.CreateNewKnifeToHit(false);
-        GameController.Instance.Open();
+        if (mPanel.alpha == 1)
+        {
+            Close();
+            GameController.Instance.CreateNewKnifeToHit(false);
+            GameController.Instance.Open();
+        }
     }
 
     public void SetGameInfo(int score, int stage)

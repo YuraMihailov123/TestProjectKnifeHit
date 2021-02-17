@@ -14,9 +14,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: e12702267e39540f38a3d3054dd6ff46, type: 2}
   mSprites:
-  - name: T_2_sword45_
+  - name: apple
+    x: 1539
+    y: 721
+    width: 242
+    height: 303
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 0
+  - name: applehalf
+    x: 1782
+    y: 721
+    width: 242
+    height: 303
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: btn_a_grey
     x: 0
-    y: 256
+    y: 155
+    width: 279
+    height: 99
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: btn_a_red
+    x: 0
+    y: 57
+    width: 277
+    height: 97
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 1
+    paddingBottom: 1
+  - name: btn_c_beige
+    x: 1796
+    y: 621
+    width: 99
+    height: 99
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: game_skill_ui_sword_slash_attack-512
+    x: 0
+    y: 512
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: swords
+    x: 513
+    y: 512
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: swords-2
+    x: 1026
+    y: 512
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: T_2_sword45_
+    x: 1539
+    y: 464
     width: 256
     height: 256
     borderLeft: 0
@@ -28,10 +132,23 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: T_4_sword_saw_
-    x: 257
-    y: 256
+    x: 0
+    y: 255
     width: 256
     height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: textinput_a
+    x: 1896
+    y: 674
+    width: 46
+    height: 46
     borderLeft: 0
     borderRight: 0
     borderTop: 0

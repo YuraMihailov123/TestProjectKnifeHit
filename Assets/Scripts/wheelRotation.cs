@@ -18,23 +18,28 @@ public class wheelRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mAngle += mSpeed;
-        if (mAngle == 360)
+        if (GameController.Instance.isPlaying)
         {
-            mAngle = -360;
+            mAngle += mSpeed;
+            if (mAngle == 360)
+            {
+                mAngle = -360;
+            }
+            //transform.RotateAround(transform.position, new Vector3(0,0,1f), 100 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, mAngle), 0.5f);
         }
-        //transform.RotateAround(transform.position, new Vector3(0,0,1f), 100 * Time.deltaTime);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, mAngle), 0.5f);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name);
-        if (col.gameObject.tag == "Finish")
+        print("Wheel collided!");
+        if (col.gameObject.tag == "Guest")
         {
+            col.gameObject.tag = "Homie";
             col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             col.gameObject.GetComponent<Knife>().mParticleSystem.SetActive(true);
-            //col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
             col.gameObject.transform.parent = transform;
             GameController.Instance.UpdateKnifeIconsStates();
         }
