@@ -14,9 +14,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 650d84b1428b84dec85587c6b8eb7628, type: 2}
   mSprites:
-  - name: treewheel
+  - name: back
     x: 0
-    y: 16
+    y: 128
+    width: 1080
+    height: 1920
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: knife0
+    x: 1167
+    y: 964
+    width: 85
+    height: 419
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 5
+    paddingBottom: 0
+  - name: knife1
+    x: 1167
+    y: 1384
+    width: 85
+    height: 423
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 1
+  - name: knife2
+    x: 1081
+    y: 1383
+    width: 85
+    height: 424
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: knife3
+    x: 1324
+    y: 1625
+    width: 84
+    height: 423
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: treewheel
+    x: 1081
+    y: 1808
     width: 242
     height: 240
     borderLeft: 0
@@ -28,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel1
-    x: 365
-    y: 15
+    x: 244
+    y: 7
     width: 119
     height: 120
     borderLeft: 0
@@ -41,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel2
-    x: 243
-    y: 136
+    x: 0
+    y: 7
     width: 121
     height: 120
     borderLeft: 0
@@ -54,8 +119,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel3
-    x: 365
-    y: 136
+    x: 364
+    y: 7
     width: 119
     height: 120
     borderLeft: 0
@@ -67,8 +132,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel4
-    x: 243
-    y: 15
+    x: 122
+    y: 7
     width: 121
     height: 120
     borderLeft: 0
