@@ -94,19 +94,6 @@ MonoBehaviour:
     paddingBottom: 0
   - name: sword
     x: 0
-    y: 1536
-    width: 512
-    height: 512
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: swords
-    x: 0
     y: 510
     width: 512
     height: 512
@@ -118,8 +105,34 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: swords-2
+  - name: swords
     x: 513
+    y: 1536
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: swords-2
+    x: 1026
+    y: 1536
+    width: 512
+    height: 512
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: swordw
+    x: 0
     y: 1536
     width: 512
     height: 512
@@ -145,8 +158,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: T_4_sword_saw_
-    x: 513
-    y: 1279
+    x: 1539
+    y: 1792
     width: 256
     height: 256
     borderLeft: 0

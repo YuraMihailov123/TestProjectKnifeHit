@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour
             mBossPreviewPanel.alpha += 0.1f;
             yield return new WaitForSeconds(0.001f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < 10; i++)
         {
             mBossPreviewPanel.alpha -= 0.1f;
