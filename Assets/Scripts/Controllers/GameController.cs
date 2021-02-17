@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     #endregion
 
     private UIPanel mPanel;
+    private UIPanel mBossPreviewPanel;
 
     private UILabel mScoreLabel;
     private UILabel mStageLabel;
@@ -32,7 +33,9 @@ public class GameController : MonoBehaviour
     private GameObject mKnifeToHitPrefab;
     private GameObject mKnifeToHit;
     private GameObject mwheelPrefab;
+    private GameObject mWheelBossPrefab;
     private GameObject mCurrentWheel;
+    
 
     private List<UISprite> mKnifesIconSprites;
 
@@ -61,11 +64,14 @@ public class GameController : MonoBehaviour
 
         mKnifeToHitPrefab = Resources.Load<GameObject>("Prefabs/knifeHit");
         mwheelPrefab = Resources.Load<GameObject>("Prefabs/wheelSpriteNew");
+        mWheelBossPrefab = Resources.Load<GameObject>("Prefabs/wheelBoss1");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
         mStageLabel = transform.Find("GameControllerUI").transform.Find("stageLabel").GetComponent<UILabel>();
         mKnifeSet = transform.Find("GameControllerUI").transform.Find("knifeSet").gameObject;
+
+        mBossPreviewPanel = transform.Find("GameControllerUI").transform.Find("bossPreview").GetComponent<UIPanel>();
 
         mKnifesIconSprites = new List<UISprite>();
         for (int i = 0; i < mKnifeSet.transform.childCount; i++) {
@@ -93,14 +99,28 @@ public class GameController : MonoBehaviour
         mStageLabel.text = "STAGE " + mCurrentStage;
         mScoreLabel.text = mScore.ToString();
 
-        mKnifesToHitLeft = Storage.Instance.mGameSettings.mStagesKnifeCount[mCurrentStage - 1];
-        mStagesProgress.transform.Find(mCurrentStage.ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0);
-        for (int i = 0; i < Storage.Instance.mGameSettings.mStagesKnifeCount[mCurrentStage-1]; i++)
+        mKnifesToHitLeft = Storage.Instance.mGameSettings.mStagesKnifeCount[(mCurrentStage - 1)%5];
+        mStagesProgress.transform.Find(((mCurrentStage - 1) % 5).ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0);
+        for (int i = 0; i < Storage.Instance.mGameSettings.mStagesKnifeCount[(mCurrentStage - 1) % 5]; i++)
         {
             mKnifesIconSprites[i].alpha = 1;
         }
 
-        mCurrentWheel = gameObject.transform.AddChild(mwheelPrefab);
+
+        SpawnWheel();
+    }
+
+    private void SpawnWheel()
+    {
+        if(mCurrentStage % 5 == 0)
+        {
+            StartCoroutine("ShowBossPreview_Coroutine");
+            mCurrentWheel = gameObject.transform.AddChild(mWheelBossPrefab);
+        }else
+        {
+            mCurrentWheel = gameObject.transform.AddChild(mwheelPrefab);
+        }
+        
         mCurrentWheel.transform.localPosition = new Vector3(0, 350, 0);
         StartCoroutine("SpawnWheel_Coroutine");
     }
@@ -125,15 +145,15 @@ public class GameController : MonoBehaviour
 
     IEnumerator ResetStages_Couroutine()
     {
-        mStagesProgress.transform.Find("5s").GetComponent<UISprite>().color = new Color(1,1,1);
-        //yield return new WaitForSeconds(0.1f);
-        mStagesProgress.transform.Find("4s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        mStagesProgress.transform.Find("4s").GetComponent<UISprite>().color = new Color(1,1,1);
         //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("3s").GetComponent<UISprite>().color = new Color(1, 1, 1);
         //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("2s").GetComponent<UISprite>().color = new Color(1, 1, 1);
         //yield return new WaitForSeconds(0.1f);
         mStagesProgress.transform.Find("1s").GetComponent<UISprite>().color = new Color(1, 1, 1);
+        //yield return new WaitForSeconds(0.1f);
+        mStagesProgress.transform.Find("0s").GetComponent<UISprite>().color = new Color(1, 1, 1);
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -166,16 +186,39 @@ public class GameController : MonoBehaviour
 
     }
 
+    IEnumerator ShowBossPreview_Coroutine()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            mBossPreviewPanel.alpha += 0.1f;
+            yield return new WaitForSeconds(0.001f);
+        }
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < 10; i++)
+        {
+            mBossPreviewPanel.alpha -= 0.1f;
+            yield return new WaitForSeconds(0.001f);
+        }
+        mBossPreviewPanel.alpha = 0;
+    }
+
     public void UpdateKnifeIconsStates()
     {
         if (mKnifesToHitLeft <= 1)
         {
-            if(mCurrentStage == 5)
+            if(mCurrentStage % 5 == 0)
             {
-                mCurrentStage = 0;
+                //mCurrentStage = 0;
                 StartCoroutine("ResetStages_Couroutine");
             }
             mCurrentStage++;
+
+            if (mCurrentStage % 5 == 0)
+            {
+                //mCurrentStage = 0;
+                
+            }
+
             ResetKnifeIconsStates();
             StartCoroutine("BreakWheel_Couroutine");
             //BuildKnifeIconsToHit();

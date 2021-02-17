@@ -27,9 +27,61 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: boss1
+    x: 613
+    y: 7
+    width: 120
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: boss2
+    x: 124
+    y: 7
+    width: 123
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: boss3
+    x: 492
+    y: 7
+    width: 120
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: boss4
+    x: 0
+    y: 7
+    width: 123
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: knife0
     x: 1167
-    y: 964
+    y: 1388
     width: 85
     height: 419
     borderLeft: 0
@@ -41,7 +93,7 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 0
   - name: knife1
-    x: 1167
+    x: 1081
     y: 1384
     width: 85
     height: 423
@@ -54,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: knife2
-    x: 1081
-    y: 1383
+    x: 1324
+    y: 1624
     width: 85
     height: 424
     borderLeft: 0
@@ -67,8 +119,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: knife3
-    x: 1324
-    y: 1625
+    x: 1167
+    y: 964
     width: 84
     height: 423
     borderLeft: 0
@@ -93,7 +145,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel1
-    x: 244
+    x: 734
     y: 7
     width: 119
     height: 120
@@ -106,7 +158,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel2
-    x: 0
+    x: 248
     y: 7
     width: 121
     height: 120
@@ -119,7 +171,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel3
-    x: 364
+    x: 854
     y: 7
     width: 119
     height: 120
@@ -132,7 +184,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: treewheel4
-    x: 122
+    x: 370
     y: 7
     width: 121
     height: 120
