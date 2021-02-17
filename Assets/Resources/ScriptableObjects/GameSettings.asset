@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   mStagesKnifeCount: 07000000090000000a0000000800000007000000
-  mWheelSpeed: 100
+  mWheelSpeed: 01000000020000000300000004000000
   mAppleDropChance: 25

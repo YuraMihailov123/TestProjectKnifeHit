@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
+    public GameObject mParticleSystem;
+
+    private void Start()
+    {
+        mParticleSystem = transform.Find("ParticleSystem").gameObject;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var rgd2d = gameObject.GetComponent<Rigidbody2D>();
@@ -21,6 +28,7 @@ public class Knife : MonoBehaviour
     {
         col.GetComponent<Rigidbody2D>().AddTorque(0.5f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
+        LostController.Instance.SetGameInfo(GameController.Instance.mScore, GameController.Instance.mCurrentStage);
         GameController.Instance.CleanGameField();
         GameController.Instance.Close();
         

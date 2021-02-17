@@ -23,8 +23,14 @@ public class LostController : MonoBehaviour
 
     public UIPanel mPanel;
 
+    private UILabel mScoreLabel;
+    private UILabel mStageLabel;
+
     public void Init()
     {
+        mScoreLabel = transform.Find("statInfo").transform.Find("scoreLabel").GetComponent<UILabel>();
+        mStageLabel = transform.Find("statInfo").transform.Find("stageLabel").GetComponent<UILabel>();
+
         mPanel = GetComponent<UIPanel>();
     }
 
@@ -33,6 +39,12 @@ public class LostController : MonoBehaviour
         Close();
         GameController.Instance.CreateNewKnifeToHit(false);
         GameController.Instance.Open();
+    }
+
+    public void SetGameInfo(int score, int stage)
+    {
+        mScoreLabel.text = score.ToString();
+        mStageLabel.text = "STAGE " + stage.ToString();
     }
 
     public void Open()

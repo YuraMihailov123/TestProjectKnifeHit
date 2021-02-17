@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     public int mCurrentStage = 1;
     public int mKnifesToHitLeft = 0;
     private int mKnifeLowerLimitForY = -650;
-    private int mScore = 0;
+    public int mScore = 0;
 
     private bool mKnifeNeedMove = false;
 
