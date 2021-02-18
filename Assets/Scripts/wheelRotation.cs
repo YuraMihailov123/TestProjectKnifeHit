@@ -19,12 +19,12 @@ public class wheelRotation : MonoBehaviour
     {
         mSpeed = Storage.Instance.mGameSettings.mWheelSpeed[Random.Range(0, 3)];
         mDistanceFromCenterToSpawnKnife = (int)GetComponent<CircleCollider2D>().radius + 50;
-        Debug.Log(Mathf.Sin(Mathf.Deg2Rad * 45));
         SpawnObjectsOnWheel();
     }
 
     private void SpawnObjectsOnWheel()
     {
+        //---------knifes spawn
         int countKnifes = Random.Range(1, 3);
         int alpha = 0;
         List<int> prevAlphas = new List<int>();
@@ -36,8 +36,11 @@ public class wheelRotation : MonoBehaviour
             alpha = Random.Range(-180,180);
             for(int j = 0; j < prevAlphas.Count; j++)
             {
-                if(Mathf.Abs(alpha - prevAlphas[j])<20)
+                if (Mathf.Abs(alpha - prevAlphas[j]) < 20)
+                {
                     alpha = Random.Range(-180, 180);
+                    j = 0;
+                }
             }
             prevAlphas.Add(alpha);
             xOffset = Mathf.Cos(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
@@ -47,6 +50,24 @@ public class wheelRotation : MonoBehaviour
             currentKnife.transform.localPosition = new Vector3(xOffset, yOffset, 0);
             currentKnife.transform.localRotation = Quaternion.Euler(0, 0, 90+alpha);
         }
+        //---------knifes spawn
+
+        //---------apple spawn
+        alpha = Random.Range(-180, 180);
+        for (int j = 0; j < prevAlphas.Count; j++)
+        {
+            if (Mathf.Abs(alpha - prevAlphas[j]) < 30)
+            {
+                alpha = Random.Range(-180, 180);
+                j = 0;
+            }
+        }
+        xOffset = Mathf.Cos(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+        yOffset = Mathf.Sin(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+        var currentApple = transform.AddChild(GameController.Instance.mApplePrefab);
+        currentApple.transform.localPosition = new Vector3(xOffset, yOffset, 0);
+        currentApple.transform.localRotation = Quaternion.Euler(0, 0, 90 + alpha);
+        //---------apple spawn
         mIsObjectsSpawned = true;
     }
 
@@ -67,8 +88,7 @@ public class wheelRotation : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name);
-        print("Wheel collided!");
+        Debug.Log("wheel triggered with " + col.gameObject.tag);
         if (col.gameObject.tag == "Guest")
         {
             col.gameObject.tag = "Homie";

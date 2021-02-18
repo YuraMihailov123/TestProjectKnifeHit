@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5000043347052681453}
   m_Layer: 5
   m_Name: knifeHit
-  m_TagString: Homie
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 3750972073763553463, guid: 275f6206f94ee4d189f3c5e788b04c67,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702232607400432883, guid: 275f6206f94ee4d189f3c5e788b04c67,
         type: 3}

@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     private GameObject mKnifeSet;
     private GameObject mStagesProgress;
     public GameObject mKnifeToHitPrefab;
+    public GameObject mApplePrefab;
+    public GameObject mAppleOnWheel;
     private GameObject mKnifeToHit;
     private GameObject mwheelPrefab;
     private GameObject mWheelBossPrefab;
@@ -65,6 +67,7 @@ public class GameController : MonoBehaviour
         mKnifeToHitPrefab = Resources.Load<GameObject>("Prefabs/knifeHit");
         mwheelPrefab = Resources.Load<GameObject>("Prefabs/wheelSpriteNew");
         mWheelBossPrefab = Resources.Load<GameObject>("Prefabs/wheelBoss1");
+        mApplePrefab = Resources.Load<GameObject>("Prefabs/apple");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
@@ -175,9 +178,12 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < mCurrentWheel.transform.childCount; i++)
         {
             var currChild = mCurrentWheel.transform.GetChild(i);
-            currChild.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            currChild.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-2.5f,2.5f), Random.Range(1f, 2f)) * 40);
-            currChild.GetComponent<Rigidbody2D>().AddTorque(10, ForceMode2D.Impulse);
+            if (currChild.GetComponent<Rigidbody2D>() != null)
+            {
+                currChild.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                currChild.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-2.5f, 2.5f), Random.Range(1f, 2f)) * 40);
+                currChild.GetComponent<Rigidbody2D>().AddTorque(10, ForceMode2D.Impulse);
+            }
         }
         
         yield return new WaitForSeconds(1f);

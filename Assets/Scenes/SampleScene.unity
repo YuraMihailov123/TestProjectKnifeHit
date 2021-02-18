@@ -992,6 +992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mKnifeToHitPrefab: {fileID: 0}
+  mApplePrefab: {fileID: 0}
+  mAppleOnWheel: {fileID: 0}
   mCurrentStage: 1
   mKnifesToHitLeft: 0
   mScore: 0

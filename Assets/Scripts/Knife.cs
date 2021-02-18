@@ -13,7 +13,7 @@ public class Knife : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Knife triggered with " + collision.gameObject.name);
+        //print("Knife triggered with " + collision.gameObject.name);
         if (collision.gameObject.tag == "Guest")
         {
             collision.gameObject.tag = "Robber";
@@ -24,7 +24,6 @@ public class Knife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Knife collided!");
         /*var rgd2d = gameObject.GetComponent<Rigidbody2D>();
         if (rgd2d != null)
         {
