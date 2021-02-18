@@ -670,12 +670,6 @@ MonoBehaviour:
   mSpriteName: btn_a_grey
   mFixedAspect: 0
   mFillCenter: 1
---- !u!4 &211117576 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1865588369131718420}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &239012124
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,9 +975,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1445290683}
-  - {fileID: 847932268}
   - {fileID: 846970943}
-  - {fileID: 211117576}
   m_Father: {fileID: 562271819}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -999,6 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d418ff66aa454035932ff014b18c545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mKnifeToHitPrefab: {fileID: 0}
   mCurrentStage: 1
   mKnifesToHitLeft: 0
   mScore: 0
@@ -2096,147 +2089,8 @@ Transform:
   - {fileID: 56280764}
   - {fileID: 720049568}
   m_Father: {fileID: 476267605}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &847932267
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 847932268}
-  - component: {fileID: 847932269}
-  - component: {fileID: 847932270}
-  - component: {fileID: 847932271}
-  - component: {fileID: 847932272}
-  m_Layer: 5
-  m_Name: wheelSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &847932268
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847932267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 350, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 476267605}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &847932269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847932267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 500
-  mHeight: 500
-  mDepth: 1
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 1
-  mType: 1
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mAtlas: {fileID: 11400000, guid: ad0af62e6f38f4845aeadcacefc5f421, type: 2}
-  mSpriteName: treewheel
-  mFixedAspect: 0
-  mFillCenter: 1
---- !u!58 &847932270
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847932267}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 250
---- !u!114 &847932271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847932267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5424eb51c10aa413ab81a845df32fc27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &847932272
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847932267}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &905826045
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,80 +5075,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!1001 &1865588369131718420
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 476267605}
-    m_Modifications:
-    - target: {fileID: 1865588369206485267, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_Name
-      value: wheelSpriteNew
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485267, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865588369206485276, guid: d4657cca1263d4aa5a3ed66f0439c3a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d4657cca1263d4aa5a3ed66f0439c3a0, type: 3}
 --- !u!1001 &5000043346279021138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5311,6 +5091,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: knifeHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000043347052681448, guid: 42f15e9a48f7a4076a4c2248755e521a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Guest
       objectReference: {fileID: 0}
     - target: {fileID: 5000043347052681449, guid: 42f15e9a48f7a4076a4c2248755e521a,
         type: 3}

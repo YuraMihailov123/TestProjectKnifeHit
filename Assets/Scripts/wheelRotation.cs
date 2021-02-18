@@ -7,18 +7,53 @@ public class wheelRotation : MonoBehaviour
 
     private Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
     private Quaternion rotation2 = Quaternion.Euler(0, 0, 360);
+
     private int mAngle = -360;
     private int mSpeed = 1;
+    private int mDistanceFromCenterToSpawnKnife = 0;
+
+    private bool mIsObjectsSpawned = false;
+
 
     private void Start()
     {
         mSpeed = Storage.Instance.mGameSettings.mWheelSpeed[Random.Range(0, 3)];
+        mDistanceFromCenterToSpawnKnife = (int)GetComponent<CircleCollider2D>().radius + 50;
+        Debug.Log(Mathf.Sin(Mathf.Deg2Rad * 45));
+        SpawnObjectsOnWheel();
+    }
+
+    private void SpawnObjectsOnWheel()
+    {
+        int countKnifes = Random.Range(1, 3);
+        int alpha = 0;
+        List<int> prevAlphas = new List<int>();
+        float xOffset = 0;
+        float yOffset = 0;
+        GameController.Instance.mKnifeToHitPrefab.tag = "Homie";
+        for (int i = 0; i < countKnifes; i++)
+        {
+            alpha = Random.Range(-180,180);
+            for(int j = 0; j < prevAlphas.Count; j++)
+            {
+                if(Mathf.Abs(alpha - prevAlphas[j])<20)
+                    alpha = Random.Range(-180, 180);
+            }
+            prevAlphas.Add(alpha);
+            xOffset = Mathf.Cos(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+            yOffset = Mathf.Sin(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+            var currentKnife = transform.AddChild(GameController.Instance.mKnifeToHitPrefab);
+            currentKnife.GetComponent<BoxCollider2D>().isTrigger = true;
+            currentKnife.transform.localPosition = new Vector3(xOffset, yOffset, 0);
+            currentKnife.transform.localRotation = Quaternion.Euler(0, 0, 90+alpha);
+        }
+        mIsObjectsSpawned = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameController.Instance.isPlaying)
+        if (GameController.Instance.isPlaying && mIsObjectsSpawned)
         {
             mAngle += mSpeed;
             if (mAngle == 360)

@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 
     private GameObject mKnifeSet;
     private GameObject mStagesProgress;
-    private GameObject mKnifeToHitPrefab;
+    public GameObject mKnifeToHitPrefab;
     private GameObject mKnifeToHit;
     private GameObject mwheelPrefab;
     private GameObject mWheelBossPrefab;
@@ -161,6 +161,7 @@ public class GameController : MonoBehaviour
     {
         if (shouldIncreaseScore)
             mScoreLabel.text = (++mScore).ToString();
+        mKnifeToHitPrefab.tag = "Guest";
         mKnifeToHit = transform.AddChild(mKnifeToHitPrefab);
         mKnifeToHit.transform.localPosition = mKnifeToHitStartPosition;
         //UpdateKnifeIconsStates();
