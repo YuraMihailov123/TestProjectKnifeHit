@@ -98,6 +98,7 @@ public class wheelRotation : MonoBehaviour
         Debug.Log("wheel triggered with " + col.gameObject.tag);
         if (col.gameObject.tag == "Guest")
         {
+            Camera.main.GetComponent<CameraShake>().shakeDuration = 0.1f;
             col.gameObject.tag = "Homie";
             col.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             col.gameObject.GetComponent<Knife>().mParticleSystem.SetActive(true);

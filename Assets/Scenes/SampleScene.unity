@@ -1100,6 +1100,7 @@ MonoBehaviour:
   mKnifesToHitLeft: 0
   mScore: 0
   isPlaying: 0
+  mIsWheelBreaking: 0
 --- !u!114 &476267607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,9 +1689,10 @@ GameObject:
   - component: {fileID: 640723796}
   - component: {fileID: 640723795}
   - component: {fileID: 640723794}
+  - component: {fileID: 640723797}
   m_Layer: 5
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1803,6 +1805,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &640723797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640723792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded06b39a0c5a4327af9475c87993ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  shakeDuration: 0
+  shakeAmount: 10
+  decreaseFactor: 1
 --- !u!1 &654923679
 GameObject:
   m_ObjectHideFlags: 0
