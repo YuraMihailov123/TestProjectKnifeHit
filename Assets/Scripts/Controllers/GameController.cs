@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     private UILabel mScoreLabel;
     private UILabel mStageLabel;
+    private UILabel mAppleLabel;
 
     private GameObject mKnifeSet;
     private GameObject mStagesProgress;
@@ -49,6 +50,7 @@ public class GameController : MonoBehaviour
     public int mScore = 0;
 
     public bool isPlaying = false;
+    public bool mIsWheelBreaking = false;
     private bool mKnifeNeedMove = false;
 
     // Start is called before the first frame update
@@ -73,6 +75,7 @@ public class GameController : MonoBehaviour
         mKnifeToHit.tag = "Guest";
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
         mStageLabel = transform.Find("GameControllerUI").transform.Find("stageLabel").GetComponent<UILabel>();
+        mAppleLabel = transform.Find("GameControllerUI").transform.Find("appleLabel").GetComponent<UILabel>();
         mKnifeSet = transform.Find("GameControllerUI").transform.Find("knifeSet").gameObject;
 
         mBossPreviewPanel = transform.Find("GameControllerUI").transform.Find("bossPreview").GetComponent<UIPanel>();
@@ -122,10 +125,16 @@ public class GameController : MonoBehaviour
         BuildKnifeIconsToHit();
     }
 
-    private void BuildKnifeIconsToHit()
+    public void UpdateControllerUI()
     {
         mStageLabel.text = "STAGE " + mCurrentStage;
         mScoreLabel.text = mScore.ToString();
+        mAppleLabel.text = Storage.Instance.mAppleCount.ToString();
+    }
+
+    private void BuildKnifeIconsToHit()
+    {
+        UpdateControllerUI();
 
         mKnifesToHitLeft = Storage.Instance.mGameSettings.mStagesKnifeCount[(mCurrentStage - 1)%5];
         mStagesProgress.transform.Find(((mCurrentStage - 1) % 5).ToString()+"s").GetComponent<UISprite>().color = new Color(255, 196, 0);
@@ -197,6 +206,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator BreakWheel_Couroutine()
     {
+        mIsWheelBreaking = true;
         wheelRotation wheel = mCurrentWheel.GetComponent<wheelRotation>();
         mCurrentWheel.GetComponent<CircleCollider2D>().enabled = false;
         wheel.enabled = false;
@@ -270,6 +280,7 @@ public class GameController : MonoBehaviour
             mCurrentWheel.transform.localScale = new Vector3(scale,scale,scale);
             yield return new WaitForSeconds(0.001f);
         }
+        mIsWheelBreaking = false;
     }
 
     public void Open()

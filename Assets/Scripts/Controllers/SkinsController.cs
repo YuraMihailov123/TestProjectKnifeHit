@@ -23,7 +23,7 @@ public class SkinsController : MonoBehaviour
 
     public UIPanel mPanel;
 
-    
+    private UILabel mAppleLabel;
 
     private UIGrid mUIGrid;
     private UICenterOnChild mChildCenter;
@@ -39,9 +39,16 @@ public class SkinsController : MonoBehaviour
         mUIGrid = mScrollView.transform.Find("UIGrid").GetComponent<UIGrid>();
         mChildCenter = mScrollView.transform.Find("UIGrid").GetComponent<UICenterOnChild>();
 
+        mAppleLabel = transform.Find("appleLabel").GetComponent<UILabel>();
+
         mPanel = GetComponent<UIPanel>();
 
         AddSkinsToController();
+    }
+
+    public void UpdateControllerUI()
+    {
+        mAppleLabel.text = Storage.Instance.mAppleCount.ToString();
     }
 
     public void OnChooseButtonPressed()
@@ -66,6 +73,7 @@ public class SkinsController : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        UpdateControllerUI();
         StartCoroutine("Open_Coroutine");
     }
 

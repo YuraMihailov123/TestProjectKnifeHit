@@ -41,6 +41,7 @@ public class Knife : MonoBehaviour
         col.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * 330);
         col.GetComponent<Rigidbody2D>().AddTorque(0.25f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
+        Storage.Instance.SaveInfo(true);
         LostController.Instance.SetGameInfo(GameController.Instance.mScore, GameController.Instance.mCurrentStage);
         GameController.Instance.CleanGameField();
         GameController.Instance.Close();

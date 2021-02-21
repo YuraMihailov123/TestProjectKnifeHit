@@ -26,6 +26,10 @@ public class MenuController : MonoBehaviour
 
     public UISprite mKnifeIcon;
 
+    private UILabel mScoreLabel;
+    private UILabel mStageLabel;
+    private UILabel mAppleLabel;
+
     public void OnSkinsButtonClick()
     {
         Close();
@@ -38,15 +42,28 @@ public class MenuController : MonoBehaviour
         GameController.Instance.Open();
     }
 
+    public void UpdateControllerUI()
+    {
+        mStageLabel.text = "STAGE " + Storage.Instance.mMaxStage;
+        mScoreLabel.text = "SCORE " + Storage.Instance.mMaxScore.ToString();
+        mAppleLabel.text = Storage.Instance.mAppleCount.ToString();
+    }
+
     public void Init()
     {
+        mScoreLabel = transform.Find("scoreLabel").GetComponent<UILabel>();
+        mStageLabel = transform.Find("stageLabel").GetComponent<UILabel>();
+        mAppleLabel = transform.Find("appleLabel").GetComponent<UILabel>();
+
         mKnifeIcon = transform.Find("knifeIcon").GetComponent<UISprite>();
         mPanel = GetComponent<UIPanel>();
+        UpdateControllerUI();
     }
 
     public void Open()
     {
         gameObject.SetActive(true);
+        UpdateControllerUI();
         GameController.Instance.DetermineSkin();
         StartCoroutine("Open_Coroutine");
     }

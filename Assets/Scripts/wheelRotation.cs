@@ -53,20 +53,27 @@ public class wheelRotation : MonoBehaviour
         //---------knifes spawn
 
         //---------apple spawn
-        alpha = Random.Range(-180, 180);
-        for (int j = 0; j < prevAlphas.Count; j++)
+        int appleChance = Storage.Instance.mGameSettings.mAppleDropChance;
+        bool shouldSpawnApple = Random.Range(1, 100) < appleChance ? true : false;
+        Debug.Log(shouldSpawnApple + " apple spawn");
+
+        if (shouldSpawnApple)
         {
-            if (Mathf.Abs(alpha - prevAlphas[j]) < 40)
+            alpha = Random.Range(-180, 180);
+            for (int j = 0; j < prevAlphas.Count; j++)
             {
-                alpha = Random.Range(-180, 180);
-                j = 0;
+                if (Mathf.Abs(alpha - prevAlphas[j]) < 40)
+                {
+                    alpha = Random.Range(-180, 180);
+                    j = 0;
+                }
             }
+            xOffset = Mathf.Cos(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+            yOffset = Mathf.Sin(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
+            var currentApple = transform.AddChild(GameController.Instance.mApplePrefab);
+            currentApple.transform.localPosition = new Vector3(xOffset, yOffset, 0);
+            currentApple.transform.localRotation = Quaternion.Euler(0, 0, 90 + alpha);
         }
-        xOffset = Mathf.Cos(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
-        yOffset = Mathf.Sin(alpha * Mathf.Deg2Rad) * mDistanceFromCenterToSpawnKnife;
-        var currentApple = transform.AddChild(GameController.Instance.mApplePrefab);
-        currentApple.transform.localPosition = new Vector3(xOffset, yOffset, 0);
-        currentApple.transform.localRotation = Quaternion.Euler(0, 0, 90 + alpha);
         //---------apple spawn
         mIsObjectsSpawned = true;
     }
