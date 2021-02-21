@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
     private GameObject mKnifeToHit;
     private GameObject mwheelPrefab;
     private GameObject mWheelBossPrefab;
-    private GameObject mCurrentWheel;
+    public GameObject mCurrentWheel;
     
 
     private List<UISprite> mKnifesIconSprites;

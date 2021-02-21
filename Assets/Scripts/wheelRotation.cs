@@ -56,7 +56,7 @@ public class wheelRotation : MonoBehaviour
         alpha = Random.Range(-180, 180);
         for (int j = 0; j < prevAlphas.Count; j++)
         {
-            if (Mathf.Abs(alpha - prevAlphas[j]) < 30)
+            if (Mathf.Abs(alpha - prevAlphas[j]) < 40)
             {
                 alpha = Random.Range(-180, 180);
                 j = 0;

@@ -15,10 +15,14 @@ public class Apple : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("apple triggered with " + collision.gameObject.tag);
-        mSpriteComponent.enabled = false;
-        mParticles.Play();
-        Destroy(gameObject, 1.5f);
+        Debug.Log(GameController.Instance.mCurrentWheel.transform.localScale.x);
+        if (GameController.Instance.mCurrentWheel.transform.localScale.x >= 1)
+        {
+            Debug.Log("apple triggered with " + collision.gameObject.tag);
+            mSpriteComponent.enabled = false;
+            mParticles.Play();
+            Destroy(gameObject, 1.5f);
+        }
         /*if (collision.gameObject.tag == "Guest")
         {
             mSpriteComponent.enabled = false;
