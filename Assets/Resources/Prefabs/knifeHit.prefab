@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5000043347052681453}
   m_Layer: 5
   m_Name: knifeHit
-  m_TagString: Homie
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: ad0af62e6f38f4845aeadcacefc5f421, type: 2}
-  mSpriteName: knife0
+  mSpriteName: knife1
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!61 &5000043347052681455

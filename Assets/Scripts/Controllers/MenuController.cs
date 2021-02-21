@@ -24,6 +24,7 @@ public class MenuController : MonoBehaviour
 
     public UIPanel mPanel;
 
+    public UISprite mKnifeIcon;
 
     public void OnSkinsButtonClick()
     {
@@ -39,12 +40,14 @@ public class MenuController : MonoBehaviour
 
     public void Init()
     {
+        mKnifeIcon = transform.Find("knifeIcon").GetComponent<UISprite>();
         mPanel = GetComponent<UIPanel>();
     }
 
     public void Open()
     {
         gameObject.SetActive(true);
+        GameController.Instance.DetermineSkin();
         StartCoroutine("Open_Coroutine");
     }
 

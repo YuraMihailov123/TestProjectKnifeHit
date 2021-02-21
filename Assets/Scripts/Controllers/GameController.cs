@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour
         mApplePrefab = Resources.Load<GameObject>("Prefabs/apple");
 
         mKnifeToHit = transform.Find("knifeHit").gameObject; // -650
+        mKnifeToHit.tag = "Guest";
         mScoreLabel = transform.Find("GameControllerUI").transform.Find("scoreLabel").GetComponent<UILabel>();
         mStageLabel = transform.Find("GameControllerUI").transform.Find("stageLabel").GetComponent<UILabel>();
         mKnifeSet = transform.Find("GameControllerUI").transform.Find("knifeSet").gameObject;
@@ -83,6 +84,30 @@ public class GameController : MonoBehaviour
         }
 
         mStagesProgress = transform.Find("GameControllerUI").transform.Find("stagesProgress").gameObject;
+    }
+
+    public void DetermineSkin()
+    {
+        if (PlayerPrefs.HasKey("currentSkin"))
+        {
+            mKnifeToHitPrefab.GetComponent<UISprite>().spriteName = "knife" + PlayerPrefs.GetInt("currentSkin");
+            MenuController.Instance.mKnifeIcon.spriteName = "knife" + PlayerPrefs.GetInt("currentSkin");
+            if (mKnifeToHit != null)
+            {
+
+                mKnifeToHit.GetComponent<UISprite>().spriteName = "knife" + PlayerPrefs.GetInt("currentSkin");
+            }
+        }
+        else
+        {
+            mKnifeToHitPrefab.GetComponent<UISprite>().spriteName = "knife0";
+            if (mKnifeToHit != null)
+            {
+
+                mKnifeToHit.GetComponent<UISprite>().spriteName = "knife0";
+            }
+            MenuController.Instance.mKnifeIcon.spriteName = "knife0";
+        }
     }
 
     private void StartGame()
@@ -250,6 +275,9 @@ public class GameController : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        //DetermineSkin();
+        if (mKnifeToHit == null)
+            CreateNewKnifeToHit(false);
         isPlaying = true;
         StartCoroutine("Open_Coroutine");
     }

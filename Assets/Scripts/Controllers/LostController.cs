@@ -44,6 +44,15 @@ public class LostController : MonoBehaviour
         }
     }
 
+    public void OnMenuButtonClick()
+    {
+        if (mPanel.alpha == 1)
+        {
+            Close();
+            MenuController.Instance.Open();
+        }
+    }
+
     public void SetGameInfo(int score, int stage)
     {
         mScoreLabel.text = score.ToString();
