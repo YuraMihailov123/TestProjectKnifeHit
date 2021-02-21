@@ -26,6 +26,7 @@ public class SkinsController : MonoBehaviour
     
 
     private UIGrid mUIGrid;
+    private UICenterOnChild mChildCenter;
 
     public GameObject[] mSkinsPrefab;
     private GameObject mScrollView;
@@ -36,10 +37,21 @@ public class SkinsController : MonoBehaviour
 
         mScrollView = transform.Find("ScrollView").gameObject;
         mUIGrid = mScrollView.transform.Find("UIGrid").GetComponent<UIGrid>();
+        mChildCenter = mScrollView.transform.Find("UIGrid").GetComponent<UICenterOnChild>();
 
         mPanel = GetComponent<UIPanel>();
 
         AddSkinsToController();
+    }
+
+    public void OnChooseButtonPressed()
+    {
+        var currentObject = mChildCenter.centeredObject;
+        var skin = int.Parse(currentObject.gameObject.name.Split('(')[0]);
+        Debug.Log(skin);
+        PlayerPrefs.SetInt("currentSkin", skin);
+        Close();
+        MenuController.Instance.Open();
     }
 
     private void AddSkinsToController()

@@ -24,10 +24,11 @@ public class MenuController : MonoBehaviour
 
     public UIPanel mPanel;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void OnSkinsButtonClick()
     {
-        
+        Close();
+        SkinsController.Instance.Open();
     }
 
     public void OnPlayButtonClick()
