@@ -8,6 +8,7 @@ public class Loader : MonoBehaviour
     void Start()
     {
         Storage.Instance.Init();
+        SkinsController.Instance.Init();
         LostController.Instance.Init();
         MenuController.Instance.Init();
         GameController.Instance.Init();
