@@ -39,12 +39,9 @@ public class ItemPurchase : MonoBehaviour
         {
             Storage.Instance.mAppleCount -= mPrice;
             mIsBought = true;
-            SetAsBought();
             SkinsController.Instance.UpdateControllerUI();
-        }else if (mIsBought)
-        {
-            SetAsChoosen();
         }
+        SetAsChoosen();
         SkinsController.Instance.ChooseSkin(mIdSkin);
     }
 

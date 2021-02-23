@@ -32,8 +32,8 @@ public class Storage : MonoBehaviour
     {
         
         mGameSettings = Resources.Load<GameSettings>("ScriptableObjects/GameSettings");
-        //PlayerPrefs.DeleteKey("skins");
-        //PlayerPrefs.DeleteKey("currentSkin");
+        PlayerPrefs.DeleteKey("skins");
+        PlayerPrefs.DeleteKey("currentSkin");
         PlayerPrefs.SetInt("appleCount", 1000);
         LoadInfo();
     }
