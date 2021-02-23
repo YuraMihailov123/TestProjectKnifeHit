@@ -29,7 +29,7 @@ public class Apple : MonoBehaviour
                 mIsPlayedPartciles = false;
             }
             Storage.Instance.mAppleCount++;
-            Storage.Instance.SaveInfo(false);
+            Storage.Instance.SaveInfo(false,false);
             GameController.Instance.UpdateControllerUI();
             Destroy(gameObject, 1.5f);
         }

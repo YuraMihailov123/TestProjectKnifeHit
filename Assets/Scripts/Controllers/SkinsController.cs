@@ -53,12 +53,25 @@ public class SkinsController : MonoBehaviour
 
     public void OnChooseButtonPressed()
     {
-        var currentObject = mChildCenter.centeredObject;
-        var skin = int.Parse(currentObject.gameObject.name.Split('(')[0]);
-        Debug.Log(skin);
-        PlayerPrefs.SetInt("currentSkin", skin);
         Close();
         MenuController.Instance.Open();
+    }
+
+    public void ChooseSkin(int idSkin)
+    {
+        var skin = idSkin;
+        UpdateSkins();
+        PlayerPrefs.SetInt("currentSkin", skin);
+        Storage.Instance.SaveInfo(false, true);
+        //Close();
+        //MenuController.Instance.Open();
+    }
+
+    public void UpdateSkins()
+    {
+        var currentSkin = PlayerPrefs.GetInt("currentSkin");
+        var currentSkinInScene = mUIGrid.transform.Find(currentSkin + "(Clone)").gameObject;
+        currentSkinInScene.transform.Find("purchaseButton").transform.Find("priceLabel").GetComponent<UILabel>().text = "Choose";
     }
 
     private void AddSkinsToController()
@@ -70,10 +83,12 @@ public class SkinsController : MonoBehaviour
         }
     }
 
+
     public void Open()
     {
         gameObject.SetActive(true);
         UpdateControllerUI();
+        
         StartCoroutine("Open_Coroutine");
     }
 

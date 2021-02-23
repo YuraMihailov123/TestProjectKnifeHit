@@ -286,6 +286,7 @@ public class GameController : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        UpdateControllerUI();
         //DetermineSkin();
         if (mKnifeToHit == null)
             CreateNewKnifeToHit(false);

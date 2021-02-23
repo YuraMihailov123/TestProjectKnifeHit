@@ -1387,6 +1387,7 @@ MonoBehaviour:
   mAppleCount: 0
   mMaxStage: 0
   mMaxScore: 0
+  mSkins: 
 --- !u!1 &600730868
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,7 +6258,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 0, y: -4, z: 1080, w: 410}
+  mClipRange: {x: 0, y: -4, z: 1080, w: 700}
   mClipSoftness: {x: 10, y: 10}
   mDepth: 2
   mSortingOrder: 0
@@ -6312,8 +6313,8 @@ MonoBehaviour:
   sorting: 0
   pivot: 3
   maxPerLine: 0
-  cellWidth: 250
-  cellHeight: 410
+  cellWidth: 320
+  cellHeight: 500
   animateSmoothly: 0
   hideInactive: 1
   keepWithinPanel: 0
