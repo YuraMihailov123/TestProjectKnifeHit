@@ -38,6 +38,7 @@ public class ItemPurchase : MonoBehaviour
         if (mPrice <= Storage.Instance.mAppleCount && !mIsBought)
         {
             Storage.Instance.mAppleCount -= mPrice;
+            mIsBought = true;
             SetAsBought();
             SkinsController.Instance.UpdateControllerUI();
         }else if (mIsBought)
