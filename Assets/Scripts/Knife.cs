@@ -18,6 +18,7 @@ public class Knife : MonoBehaviour
         {
             collision.gameObject.tag = "Robber";
             GameController.Instance.isPlaying = false;
+            Vibration.VibratePeek();
             StartCoroutine(LostGame_Coroutine(collision.gameObject));
         }
     }

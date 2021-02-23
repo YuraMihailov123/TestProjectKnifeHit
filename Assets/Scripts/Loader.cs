@@ -7,6 +7,7 @@ public class Loader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vibration.Init();
         Storage.Instance.Init();
         SkinsController.Instance.Init();
         LostController.Instance.Init();

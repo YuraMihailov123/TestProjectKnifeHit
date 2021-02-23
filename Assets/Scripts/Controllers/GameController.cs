@@ -262,6 +262,7 @@ public class GameController : MonoBehaviour
             }
 
             ResetKnifeIconsStates();
+            Vibration.VibratePeek();
             StartCoroutine("BreakWheel_Couroutine");
             //BuildKnifeIconsToHit();
             return;

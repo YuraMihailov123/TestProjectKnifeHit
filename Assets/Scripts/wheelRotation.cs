@@ -105,6 +105,7 @@ public class wheelRotation : MonoBehaviour
             col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
             col.gameObject.transform.parent = transform;
             GameController.Instance.UpdateKnifeIconsStates();
+            Vibration.VibratePeek();
         }
     }
 
