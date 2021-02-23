@@ -323,7 +323,7 @@ public class GameController : MonoBehaviour
 
     public void TapToHit()
     {
-        if (!mKnifeNeedMove && mPanel.alpha == 1 && isPlaying)
+        if (!mKnifeNeedMove && mPanel.alpha == 1 && isPlaying && !mIsWheelBreaking)
         {
             mKnifeToHit.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             mKnifeToHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * 400);

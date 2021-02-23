@@ -22,16 +22,18 @@ public class Apple : MonoBehaviour
         if (GameController.Instance.mCurrentWheel.transform.localScale.x >= 1 && !GameController.Instance.mIsWheelBreaking)
         {
             Debug.Log("apple triggered with " + collision.gameObject.tag);
-            mSpriteComponent.enabled = false;
+            
             if (!mIsPlayedPartciles)
             {
+                mSpriteComponent.enabled = false;
                 mParticles.Play();
-                mIsPlayedPartciles = false;
+                mIsPlayedPartciles = true;
+                Storage.Instance.mAppleCount++;
+                Storage.Instance.SaveInfo(false, false);
+                GameController.Instance.UpdateControllerUI();
+                Destroy(gameObject, 1.5f);
             }
-            Storage.Instance.mAppleCount++;
-            Storage.Instance.SaveInfo(false,false);
-            GameController.Instance.UpdateControllerUI();
-            Destroy(gameObject, 1.5f);
+            
         }
     }
 }
