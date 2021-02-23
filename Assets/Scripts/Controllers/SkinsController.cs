@@ -60,7 +60,9 @@ public class SkinsController : MonoBehaviour
     public void ChooseSkin(int idSkin)
     {
         var skin = idSkin;
-        UpdateSkins();
+        var currentSkin = PlayerPrefs.GetInt("currentSkin");
+        if (skin != currentSkin)
+            UpdateSkins();
         PlayerPrefs.SetInt("currentSkin", skin);
         Storage.Instance.SaveInfo(false, true);
         //Close();
